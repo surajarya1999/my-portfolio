@@ -17,7 +17,7 @@ export default function Portfolio() {
     },
     {
       img: "pngegg(3).png",
-      title: "Upcoming Project",
+      title: "Fresh Food",
       desc: "More exciting projects coming soon. Stay tuned for my next full-stack creation.",
       link: "#",
     },
