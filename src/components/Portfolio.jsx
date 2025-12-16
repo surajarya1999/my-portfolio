@@ -1,32 +1,57 @@
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Portfolio() {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const cardRefs = useRef([]);
+
   const works = [
     {
-      img: "a.jpg", // Choose an image for your car rental project
+      img: "a.jpg",
       title: "Car Rental Full-Stack App",
       desc: "A fully responsive car rental platform with booking, detail pages, admin panels & user features. Built using MERN stack.",
       link: "https://car-rental-with-suraj.netlify.app/",
     },
     {
-      img: "collge.png", // Choose an image for college portal
+      img: "collge.png",
       title: "College Portal Website",
       desc: "A dynamic college portal with student dashboard, course overview, event sections & user interaction pages.",
-      link: "https://collage-portal-ox3a.onrender.com", // ↩️ Replace with your actual link
+      link: "https://collage-portal-ox3a.onrender.com",
     },
     {
       img: "pngegg(3).png",
-      title: "Fresh Food",
+      title: "Upcoming Project",
       desc: "More exciting projects coming soon. Stay tuned for my next full-stack creation.",
       link: "#",
     },
   ];
 
+  /* 🔥 SCROLL DETECTION FOR MOBILE */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.dataset.index);
+          if (entry.isIntersecting) {
+            setActiveIndex(index);
+          }
+        });
+      },
+      { threshold: 0.6 } // 60% visible
+    );
+
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div id="portfolio" className="py-12 px-5 md:px-10">
-      <div className="max-w-6xl mx-auto" id="Portfolio">
-        <h3 className="text-[40px] md:text-[55px] font-semibold text-black text-center">
+      <div className="max-w-6xl mx-auto">
+        <h3 className="text-[40px] md:text-[55px] font-semibold text-black ">
           My Work
         </h3>
 
@@ -34,19 +59,38 @@ export default function Portfolio() {
           {works.map((work, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-[30px] group"
+              ref={(el) => (cardRefs.current[index] = el)}
+              data-index={index}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              className="relative overflow-hidden rounded-[30px]"
             >
+              {/* IMAGE */}
               <img
                 src={work.img}
                 alt={work.title}
-                className="rounded-[30px] w-full h-[350px] bg-gray-400 sm:h-[420px] md:h-[480px] object-cover transition-transform duration-500 group-hover:scale-110"
+                className={`
+                  w-full rounded-[30px]
+                  h-[350px] sm:h-[420px] md:h-[480px]
+                  object-cover transition-transform duration-500
+                  ${activeIndex === index ? "scale-110" : ""}
+                `}
               />
 
+              {/* OVERLAY */}
               <div
-                className="absolute inset-0 h-0 w-full
-                flex flex-col items-center justify-center text-center px-5 overflow-hidden rounded-[30px]
-                bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[#ff004f]
-                transition-all duration-700 group-hover:h-full"
+                className={`
+                  absolute inset-0
+                  flex flex-col items-center justify-center
+                  text-center px-6 rounded-[30px]
+                  bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[#ff004f]
+                  transition-all duration-700
+                  ${
+                    activeIndex === index
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-full opacity-0"
+                  }
+                `}
               >
                 <h3 className="text-white text-[22px] md:text-[25px] font-medium mb-3">
                   {work.title}
@@ -58,8 +102,12 @@ export default function Portfolio() {
                   href={work.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 bg-white text-[#ff004f] w-[55px] h-[55px] 
-                             flex items-center justify-center rounded-full text-[18px]"
+                  className="
+                    mt-5 bg-white text-[#ff004f]
+                    w-[55px] h-[55px]
+                    flex items-center justify-center
+                    rounded-full text-[18px]
+                  "
                 >
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </a>
@@ -70,8 +118,19 @@ export default function Portfolio() {
 
         <a
           href="#"
-          className="block mt-12 mx-auto w-fit border-2 border-[#ff004f] text-black 
-                     px-12 py-3 rounded-md text-[18px] transition-all hover:bg-[#ff004f]"
+          className="
+    block mt-12 mx-auto w-fit
+    border-2 border-[#ff004f]
+    text-black
+    px-12 py-3
+    rounded-md
+    text-[18px]
+    transition-all duration-300
+
+    hover:bg-[#ff004f] hover:text-white
+    active:bg-[#ff004f] active:text-white
+    active:scale-95
+  "
         >
           See more
         </a>
