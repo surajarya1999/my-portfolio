@@ -83,7 +83,7 @@ const Contact = () => {
             </div>
 
             <a
-              href="attach CV"
+              href="Suraj Arya Full Stack.pdf"
               download
               className="inline-block bg-pink-600 mt-8 px-8 py-3 rounded-lg text-lg"
             >
