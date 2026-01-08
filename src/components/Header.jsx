@@ -16,7 +16,7 @@ export default function Header() {
     >
       {/* Logo */}
       <h1 className="text-black font-sans text-3xl font-extrabold">
-        $<span className="text-[#ff004f] text-3xl">uraj_</span>
+        $<span className="text-[#ff004f] text-3xl font-semibold">uraj_</span>
       </h1>
 
       {/* Desktop Menu */}

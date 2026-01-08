@@ -10,21 +10,29 @@ export default function Portfolio() {
     {
       img: "a.jpg",
       title: "Car Rental Full-Stack App",
-      desc: "A fully responsive car rental platform with booking, detail pages, admin panels & user features. Built using MERN stack.",
+      desc: "A fully responsive car rental platform with booking management, detail pages, admin panels, and user features. Integrated secure Razorpay payments with UPI, card, and net banking support. Built using MERN stack.",
       link: "https://car-rental-with-suraj.netlify.app/",
     },
+
     {
-      img: "collge.png",
+      img: "Ai.png",
+      title: "AI Study Buddy",
+      desc: "AI-powered study buddy that generates multiple topic-wise learning cards. Built to help students understand concepts faster using smart content generation and structured learning.",
+      link: "https://polite-pegasus-0170ea.netlify.app/",
+    },
+
+    {
+      img: "collage.png",
       title: "College Portal Website",
       desc: "A dynamic college portal with student dashboard, course overview, event sections & user interaction pages.",
       link: "https://collage-portal-ox3a.onrender.com",
     },
-    {
-      img: "pngegg(3).png",
-      title: "Upcoming Project",
-      desc: "More exciting projects coming soon. Stay tuned for my next full-stack creation.",
-      link: "#",
-    },
+    // {
+    //   img: "pngegg(3).png",
+    //   title: "Upcoming Project",
+    //   desc: "More exciting projects coming soon. Stay tuned for my next full-stack creation.",
+    //   link: "#",
+    // },
   ];
 
   /* 🔥 SCROLL DETECTION FOR MOBILE */

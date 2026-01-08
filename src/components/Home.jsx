@@ -1,3 +1,5 @@
+import { FaReact } from "react-icons/fa";
+
 export default function Home() {
   return (
     <section
@@ -26,7 +28,10 @@ export default function Home() {
             sm:pt-[200px]    /* tablet/desktop: normal */
             px-4 sm:px-18"
       >
-        <p className="text-black text-[26px] sm:text-[30px]">UI/UX Designer</p>
+        <p className="flex items-center gap-2 text-black text-[26px] sm:text-[30px]">
+          React Developer
+          <FaReact className="text-cyan-500 text-[28px] sm:text-[32px] animate-spin-slow" />
+        </p>
 
         <h2 className="text-[45px] sm:text-[70px] text-black mt-2 leading-tight">
           Hi, I'm <span className="text-[#ff004f]">Suraj</span> <br />
